@@ -11,6 +11,18 @@ Everything runs locally and unprivileged: a TCP connect scan needs no root, and
 nothing is sent off the machine. By default only your own interface subnets are
 scanned.
 
+## What it looks like
+
+![The Network Map panel](docs/screenshot-panel.png)
+
+*The panel: the LAN as a map, a keyboard-driven host list, and one-keystroke
+open / ssh / wake chips. (Mocked with example data - not a real network.)*
+
+![The Network Map widget in the bar](docs/screenshot-bar.png)
+
+*The bar widget: the host count, with a loop glyph while continuous monitoring
+is on.*
+
 ## Install
 
     git clone <this repo> ~/Work/omarchy-netmap

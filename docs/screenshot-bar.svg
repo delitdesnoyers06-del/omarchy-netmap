@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="96" viewBox="0 0 560 96">
+ <rect width="560" height="96" fill="#090f0d"/>
+ <rect x="16" y="22" width="528" height="48" rx="10" fill="#0c1512" stroke="rgba(193,196,151,0.12)"/>
+<rect x="32" y="36" width="24" height="20" rx="6" fill="rgba(80,148,117,0.2)" stroke="#509475" stroke-width="1"/><text x="44" y="46" font-family="JetBrainsMono Nerd Font" font-size="10" fill="#509475" text-anchor="middle" dominant-baseline="central">1</text><rect x="60" y="36" width="24" height="20" rx="6" fill="rgba(193,196,151,0.05)" stroke="rgba(193,196,151,0.15)" stroke-width="1"/><text x="72" y="46" font-family="JetBrainsMono Nerd Font" font-size="10" fill="#53685B" text-anchor="middle" dominant-baseline="central">2</text><rect x="88" y="36" width="24" height="20" rx="6" fill="rgba(193,196,151,0.05)" stroke="rgba(193,196,151,0.15)" stroke-width="1"/><text x="100" y="46" font-family="JetBrainsMono Nerd Font" font-size="10" fill="#53685B" text-anchor="middle" dominant-baseline="central">3</text><rect x="116" y="36" width="24" height="20" rx="6" fill="rgba(193,196,151,0.05)" stroke="rgba(193,196,151,0.15)" stroke-width="1"/><text x="128" y="46" font-family="JetBrainsMono Nerd Font" font-size="10" fill="#53685B" text-anchor="middle" dominant-baseline="central">4</text>
+ <rect x="236" y="32" width="88" height="28" rx="8" fill="rgba(80,148,117,0.1)" stroke="rgba(80,148,117,0.45)"/>
+ <text x="254" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" fill="#509475" text-anchor="middle" dominant-baseline="central">&#xf006a;</text>
+ <text x="270" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" font-weight="bold" fill="#509475">12</text>
+ <text x="396" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" fill="rgba(193,196,151,0.7)" text-anchor="middle" dominant-baseline="central">&#xf05a9;</text>
+ <text x="424" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" fill="rgba(193,196,151,0.7)" text-anchor="middle" dominant-baseline="central">&#xf057e;</text>
+ <text x="452" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" fill="rgba(193,196,151,0.7)" text-anchor="middle" dominant-baseline="central">&#xf0079;</text>
+ <text x="536" y="46" font-family="JetBrainsMono Nerd Font" font-size="13" fill="#C1C497" text-anchor="end" dominant-baseline="central">09:41</text>
+</svg>
