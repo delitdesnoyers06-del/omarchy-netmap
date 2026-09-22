@@ -688,9 +688,12 @@ Panel {
                 ? "monitoring the network"
                 : "Click a node to select it, click again to open it";
             }
-            color: root.svc && root.svc.toast && root.svc.toast.kind !== "ok" && root.svc.toast.text
-              ? Color.urgent
-              : root.muted
+            // A toast the user triggered is the one line worth colouring: a
+            // failed one is urgent, a plain refresh notice stays quiet.
+            color: {
+              if (!root.svc || !root.svc.toast || !root.svc.toast.text) return root.muted;
+              return root.svc.toast.kind !== "ok" ? Color.urgent : root.accent;
+            }
             font.family: root.ff
             font.pixelSize: Style.font.caption
             elide: Text.ElideRight
@@ -769,6 +772,12 @@ Panel {
       && root.focusedIp === row.host.ip
     readonly property var actions: Model.actionsFor(row.host, root.options)
     readonly property var chips: Model.chipActions(row.host, root.options)
+    // One name width shared by every row, so the addresses line up in a column
+    // instead of trailing each name at a different x. Clamped so a wide address
+    // can never be pushed off the row on a narrow panel.
+    readonly property real nameColumn: Math.max(Style.space(72),
+      Math.min(Math.round(rowLabels.width * 0.42),
+        rowLabels.width - ipLabel.implicitWidth - Style.space(30)))
 
     hasCursor: row.isSelected && root.actionIndex < 0
     current: row.host.is_gateway === true
@@ -799,6 +808,18 @@ Panel {
         if (!root.svc || !primary) return;
         root.launch(primary);
       }
+    }
+
+    // Accent rail on the row under the cursor: the selection reads at a glance
+    // even when the row has no open ports to colour it.
+    Rectangle {
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      width: Style.space(3)
+      height: Math.max(Style.space(12), parent.height - Style.space(12))
+      radius: width / 2
+      color: root.accent
+      visible: row.isSelected
     }
 
     Item {
@@ -871,24 +892,29 @@ Panel {
             width: parent.width
             spacing: Style.space(6)
 
+            // Always occupies its slot (an empty string when there is no pin);
+            // a positioner skips an invisible item, which would shift every
+            // unpinned row left of the pinned ones.
             Text {
               id: pinGlyph
               textFormat: Text.PlainText
-              visible: row.host.pinned === true
-              text: Model.GLYPH.pin
+              text: row.host.pinned === true ? Model.GLYPH.pin : ""
               color: root.accent
               font.family: root.ff
               font.pixelSize: Style.font.caption
+              width: Style.space(12)
             }
 
+            // The name elides into one shared column (see nameColumn), so the
+            // address always starts at the same x down the list.
             Text {
+              id: hostLabel
               textFormat: Text.PlainText
               text: Model.shorten(Model.hostName(row.host), 30)
               color: root.fg
               font.family: root.ff
               font.pixelSize: Style.font.body
-              width: Math.min(implicitWidth,
-                parent.width - ipLabel.implicitWidth - pinGlyph.width - Style.space(12))
+              width: row.nameColumn
               elide: Text.ElideRight
             }
 
