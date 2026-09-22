@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "id": "omarchy-netmap",
+  "name": "Network Map",
+  "version": "0.2.0",
+  "author": "yoran",
+  "license": "MIT",
+  "description": "Live map of the local network: mDNS/DNS-SD discovery, ARP, a mass-parallel port scan with protocol identification, continuous monitoring with change alerts, and one keystroke to ssh in, open the web UI or play a stream",
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Network Map",
+    "description": "Hosts, open ports and services on the LAN, with ssh / browser / media actions",
+    "category": "Network",
+    "allowMultiple": false,
+    "defaultSection": "center",
+    "defaults": {
+      "ports": "top",
+      "concurrency": 1024,
+      "timeoutMs": 400,
+      "mdns": "auto",
+      "mdnsMs": 2500,
+      "deepProbe": "On",
+      "netbios": "On",
+      "autoScan": "On",
+      "intervalSec": 3600,
+      "notify": "Off",
+      "pinned": [],
+      "rtspUser": "",
+      "rtspPassword": "",
+      "rtspPath": "",
+      "showCount": "On",
+      "sshUser": "",
+      "sshTarget": "ip",
+      "filter": "all",
+      "detailsOpen": true,
+      "listHeight": 300
+    },
+    "schema": [
+      {
+        "key": "ports",
+        "type": "string",
+        "label": "Ports",
+        "defaultValue": "top",
+        "description": "top, all, web, or a list like 22,80,443,1-1024"
+      },
+      {
+        "key": "concurrency",
+        "type": "integer",
+        "label": "Parallel connects",
+        "min": 16,
+        "max": 20000,
+        "step": 16,
+        "defaultValue": 1024
+      },
+      {
+        "key": "timeoutMs",
+        "type": "integer",
+        "label": "Connect timeout (ms)",
+        "min": 50,
+        "max": 5000,
+        "step": 50,
+        "defaultValue": 400
+      },
+      {
+        "key": "mdns",
+        "type": "enum",
+        "label": "mDNS source",
+        "options": [
+          "auto",
+          "native",
+          "avahi",
+          "off"
+        ],
+        "defaultValue": "auto"
+      },
+      {
+        "key": "mdnsMs",
+        "type": "integer",
+        "label": "mDNS listen (ms)",
+        "min": 500,
+        "max": 15000,
+        "step": 500,
+        "defaultValue": 2500
+      },
+      {
+        "key": "deepProbe",
+        "type": "enum",
+        "label": "Identify services",
+        "options": [
+          "On",
+          "Off"
+        ],
+        "defaultValue": "On"
+      },
+      {
+        "key": "netbios",
+        "type": "enum",
+        "label": "NetBIOS names",
+        "options": [
+          "On",
+          "Off"
+        ],
+        "defaultValue": "On"
+      },
+      {
+        "key": "autoScan",
+        "type": "enum",
+        "label": "Monitor at startup",
+        "options": [
+          "On",
+          "Off"
+        ],
+        "defaultValue": "On"
+      },
+      {
+        "key": "intervalSec",
+        "type": "integer",
+        "label": "Monitoring interval (s)",
+        "min": 60,
+        "max": 86400,
+        "step": 60,
+        "defaultValue": 3600
+      },
+      {
+        "key": "pinned",
+        "type": "string",
+        "label": "Pinned devices",
+        "defaultValue": "",
+        "description": "Managed from the panel (press b on a host). Waking needs the MAC, so pin a host that has been seen at least once."
+      },
+      {
+        "key": "rtspUser",
+        "type": "string",
+        "label": "Camera user",
+        "defaultValue": "",
+        "description": "Credentials for RTSP streams. Note: stored in shell.json."
+      },
+      {
+        "key": "rtspPassword",
+        "type": "string",
+        "label": "Camera password",
+        "defaultValue": "",
+        "description": "Used to build rtsp://user:password@host:port/path. Stored in shell.json."
+      },
+      {
+        "key": "rtspPath",
+        "type": "string",
+        "label": "Stream path",
+        "defaultValue": "",
+        "description": "Path appended to the stream URL when the camera did not report one, e.g. /cam/realmonitor?channel=1&subtype=0 for Dahua."
+      },
+      {
+        "key": "notify",
+        "type": "enum",
+        "label": "Notify on change",
+        "options": [
+          "On",
+          "Off"
+        ],
+        "defaultValue": "Off"
+      },
+      {
+        "key": "subnets",
+        "type": "string",
+        "label": "Subnets",
+        "defaultValue": "",
+        "description": "Optional. Default is every local interface subnet."
+      },
+      {
+        "key": "sshTarget",
+        "type": "enum",
+        "label": "SSH destination",
+        "options": [
+          "ip",
+          "name"
+        ],
+        "defaultValue": "ip",
+        "description": "ip: ssh gets the address (Host blocks must name the address or a wildcard). name: ssh gets the resolvable mDNS name, which is what a Host block usually matches."
+      },
+      {
+        "key": "sshUser",
+        "type": "string",
+        "label": "SSH user",
+        "defaultValue": "",
+        "description": "Optional user for the ssh action, e.g. pi"
+      },
+      {
+        "key": "showCount",
+        "type": "enum",
+        "label": "Host count in the bar",
+        "options": [
+          "On",
+          "Off"
+        ],
+        "defaultValue": "On"
+      }
+    ]
+  }
+}
